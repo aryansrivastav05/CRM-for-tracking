@@ -3,7 +3,7 @@
  */
 
 export const BACKEND_URL: string =
-  ((import.meta as any)?.env?.VITE_BACKEND_URL as string) || "http://localhost:8000";
+  ((import.meta as any)?.env?.VITE_BACKEND_URL as string) || "https://crm-for-tracking.onrender.com";
 
 export const getApiUrl = (endpoint: string): string => {
   const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;

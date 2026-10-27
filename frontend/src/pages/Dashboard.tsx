@@ -68,9 +68,15 @@ export const Dashboard: React.FC = () => {
         const isOwnerPortal = data.role === "OWNER" || data.role === "ADMIN" || data.role === "MANAGER";
         setToastMessage(`Switched to ${isOwnerPortal ? "👑 Owner Command Center" : "💼 Executive Portal"} as ${data.full_name}.`);
         setTimeout(() => setToastMessage(null), 3500);
+      } else {
+        const errData = await resp.json().catch(() => ({}));
+        setToastMessage(`⚠️ Switch failed: ${errData.detail || "Authentication error"}`);
+        setTimeout(() => setToastMessage(null), 4000);
       }
     } catch (err) {
       console.error("Authentication failed:", err);
+      setToastMessage("⚠️ Cannot reach backend server. If Render backend was asleep, please wait 20s and try again.");
+      setTimeout(() => setToastMessage(null), 5000);
     }
   };
 
